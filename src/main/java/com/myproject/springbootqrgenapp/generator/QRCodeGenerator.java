@@ -1,4 +1,5 @@
 package com.myproject.springbootqrgenapp.generator;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -11,6 +12,11 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
 public class QRCodeGenerator {
+		public static BufferedImage genQrCode(String urlText, int width, int height) throws Exception{
+			QRCodeWriter qrCodeWriter = new QRCodeWriter();
+			BitMatrix bitMatrix = qrCodeWriter.encode(urlText, BarcodeFormat.QR_CODE, width, height);
+			return MatrixToImageWriter.toBufferedImage(bitMatrix);
+		}
 
 		public static void generateQRCodeImage(String text, int width, int height, String filePath)
 	            throws WriterException, IOException {
