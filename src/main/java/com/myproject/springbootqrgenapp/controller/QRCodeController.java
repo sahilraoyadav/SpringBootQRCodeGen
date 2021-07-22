@@ -57,7 +57,7 @@ public class QRCodeController {
 		return mav;
 	}
 
-	@GetMapping(value = "/gen/{codeText}/{width}/{height}", produces = MediaType.IMAGE_PNG_VALUE)
+	@GetMapping(value = "/{codeText}/{width}/{height}", produces = MediaType.IMAGE_PNG_VALUE)
 	public ResponseEntity<BufferedImage> zxingQRCode(@PathVariable("codeText") String codeText,
 			@PathVariable("width") Integer width, @PathVariable("height") Integer height) throws Exception {
 		return successResponse(QRCodeGenerator.genQrCode(codeText, width, height));
